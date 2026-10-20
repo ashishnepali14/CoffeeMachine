@@ -1,6 +1,8 @@
 class CoffeeMaker:
     """Models the machine that makes the coffee"""
     def __init__(self):
+        # can make this dict a passable config option, but you'd need to validate it when you do
+        # i.e. reject if missing a necessary field
         self.resources = {
             "water": 300,
             "milk": 200,

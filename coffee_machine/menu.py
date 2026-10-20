@@ -13,6 +13,8 @@ class MenuItem:
 class Menu:
     """Models the Menu with drinks."""
     def __init__(self):
+        # this also can be something passed in as a config. Again you would have to validate to make sure all fields
+        # are present
         self.menu = [
             MenuItem(name="latte", water=200, milk=150, coffee=24, cost=2.5),
             MenuItem(name="espresso", water=50, milk=0, coffee=18, cost=1.5),
@@ -23,7 +25,7 @@ class Menu:
         """Returns all the names of the available menu items"""
         options = ""
         for item in self.menu:
-            options += f"{item.name}/"
+            options += f"{item.name}/" # join will help you here https://www.w3schools.com/python/ref_string_join.asp
         return options
 
     def find_drink(self, order_name):
@@ -31,4 +33,6 @@ class Menu:
         for item in self.menu:
             if item.name == order_name:
                 return item
-        print("Sorry that item is not available.")
+        print("Sorry that item is not available.") 
+        # I would make the thing calling this function responsible for this print message. Keep this function having only
+        # one purpose

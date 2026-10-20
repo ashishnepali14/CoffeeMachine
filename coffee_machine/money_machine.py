@@ -8,6 +8,13 @@ class MoneyMachine:
         "nickles": 0.05,
         "pennies": 0.01
     }
+    # this is a very specific thing, but you should model this in ints (numbers of pennies), not floats
+    # the reason being is that floats are not perfectly accurate in computers.
+    # see (https://docs.python.org/3/tutorial/floatingpoint.html)
+    # At the scale of this program it doesn't matter, however in large scale transactions
+    # it really does! You can still print things as floats afterwards.
+    # limitation of this is that there are limits on int sizes 
+    # https://www.datacamp.com/tutorial/everything-you-need-to-know-about-pythons-maximum-integer-value
 
     def __init__(self):
         self.profit = 0
@@ -21,6 +28,7 @@ class MoneyMachine:
         """Returns the total calculated from coins inserted."""
         print("Please insert coins.")
         for coin in self.COIN_VALUES:
+            # this is vulnerable to entering empty strings, you may want to catch it and force a retry
             self.money_received += int(input(f"How many {coin}?: ")) * self.COIN_VALUES[coin]
         return self.money_received
 
